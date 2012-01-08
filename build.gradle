@@ -1,0 +1,23 @@
+apply plugin: 'java'
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+configurations {
+    pit
+}
+
+task pit << {
+    ant {
+        taskdef(name: 'pitestant', classname: 'org.pitest.PitestAnt', classpath: configurations.pit.asPath)
+        pitestant()
+    }
+}
+
+dependencies {
+    testCompile  'junit:junit:4.10'
+    pit 'org.pitest:pitest-ant:0.25-SNAPSHOT'
+}
