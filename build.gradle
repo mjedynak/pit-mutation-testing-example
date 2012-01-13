@@ -21,4 +21,5 @@ task pit << {
 
 dependencies {
     pit 'org.pitest:pitest-ant:0.25-SNAPSHOT'
+    testCompile 'junit:junit:4.10'
 }
