@@ -12,12 +12,13 @@ configurations {
 
 task pit << {
     ant {
-        taskdef(name: 'pitestant', classname: 'org.pitest.PitestAnt', classpath: configurations.pit.asPath)
-        pitestant()
+        taskdef(name: 'pitestant', classname: 'org.pitest.PitestAnt', classpath: configurations.pit.asPath) 
+        pitestant(classesInScope: 'pl.mjedynak.testing.*', sourceDirs: sourceSets.main.java.srcDirs, reportDir: "$reportsDir/pit",
+                classpath: sourceSets.test.runtimeClasspath.asPath + configurations.pit.asPath )
     }
 }
 
+
 dependencies {
-    testCompile  'junit:junit:4.10'
     pit 'org.pitest:pitest-ant:0.25-SNAPSHOT'
 }
